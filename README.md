@@ -9,7 +9,7 @@ There are two files included:
 To use the program, enter the filename and the number of strings to generate.
 
 Sample output:
-
+```
 Enter config filename to use for text generation:reassuring.cfg
 Enter number of strings to generate:20
 Computers won't be able to understand a piece of music.
@@ -33,3 +33,4 @@ Computers will never have the ability to enjoy a superb sonnet.
 Computers won't ever be able to experience a story.
 Computers will never have the ability to experience a play.
 Generated 20 strings in 0.0 seconds.
+```
