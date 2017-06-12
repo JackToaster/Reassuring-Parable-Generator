@@ -38,12 +38,12 @@ def gen_phrase(phrases):
     output_string = random.choice(phrases['starter'])
     return evaluatePhrase(output_string, phrases)
 
-
 filename = raw_input("Enter config filename to use for text generation:")
+loaded_config = loadConfig(filename)
 number_of_outputs = int(raw_input('Enter number of strings to generate:'))
 current_time = time.time()
 for i in range(0,number_of_outputs):
-    print(gen_phrase(loadConfig(filename)))
+    print(gen_phrase(loaded_config))
 
 time_dif = time.time() - current_time
 print('Generated ' + str(number_of_outputs) + ' strings in ' + str(time_dif) + " seconds.")
