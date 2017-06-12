@@ -30,7 +30,7 @@ def evaluatePhrase(inputString, phrases):
         if phrase == '[none]':
             phrase = ''
         inputString = inputString[:index1] + phrase + inputString[index2 + 1:]
-        inputStrign = fixFormat(inputString)
+        inputString = fixFormat(inputString)
         return evaluatePhrase(inputString, phrases)
 
 #generate a phrase
