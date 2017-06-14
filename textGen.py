@@ -1,45 +1,32 @@
-import random, ConfigParser as parser, time
 
-#load the configuration file
-def loadConfig(config_filename):
-    #create a config parser
-    config = parser.ConfigParser()
-    #read the file
-    config.read(config_filename)
-    #read the values
-    dictionary = {}
-    for section in config.sections():
-        dictionary[section] = {}
-        for option in config.options(section):
-            dictionary[section][option] = config.get(section, option).splitlines()
+import time
+from config import config
 
-    return dictionary['phrases']
+
 
 def fixFormat(input_string):
     return input_string
 
 #evaluate and replace a string
-def evaluatePhrase(inputString, phrases):
+def evaluatePhrase(inputString, config):
     if inputString.find('{') == -1:
         return inputString
     else:
         index1 = inputString.find('{')
         index2 = inputString.find('}')
         key = inputString[index1 + 1:index2]
-        phrase = random.choice(phrases[key])
-        if phrase == '[none]':
-            phrase = ''
+        phrase = config.get_phrase(key)
         inputString = inputString[:index1] + phrase + inputString[index2 + 1:]
         inputString = fixFormat(inputString)
-        return evaluatePhrase(inputString, phrases)
+        return evaluatePhrase(inputString, config)
 
 #generate a phrase
-def gen_phrase(phrases):
-    output_string = random.choice(phrases['starter'])
-    return evaluatePhrase(output_string, phrases)
+def gen_phrase(config):
+    output_string = config.get_phrase('starter')
+    return evaluatePhrase(output_string, config)
 
 filename = raw_input("Enter config filename to use for text generation:")
-loaded_config = loadConfig(filename)
+loaded_config = config(filename)
 number_of_outputs = int(raw_input('Enter number of strings to generate:'))
 current_time = time.time()
 for i in range(0,number_of_outputs):
