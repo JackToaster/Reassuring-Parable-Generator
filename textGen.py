@@ -15,7 +15,12 @@ def evaluatePhrase(inputString, config):
         index1 = inputString.find('{')
         index2 = inputString.find('}')
         key = inputString[index1 + 1:index2]
-        phrase = config.get_phrase(key)
+
+        #if the key is !, it's a subject
+        if key == '!':
+            phrase = config.get_subject()
+        else:
+            phrase = config.get_phrase(key)
         inputString = inputString[:index1] + phrase + inputString[index2 + 1:]
         inputString = fixFormat(inputString)
         return evaluatePhrase(inputString, config)
@@ -25,11 +30,13 @@ def gen_phrase(config):
     output_string = config.get_phrase('starter')
     return evaluatePhrase(output_string, config)
 
-filename = raw_input("Enter config filename to use for text generation:")
+filename = input("Enter config filename to use for text generation:")
 loaded_config = config(filename)
-number_of_outputs = int(raw_input('Enter number of strings to generate:'))
+
+number_of_outputs = int(input('Enter number of strings to generate:'))
 current_time = time.time()
 for i in range(0,number_of_outputs):
+    loaded_config.create_subjects()
     print(gen_phrase(loaded_config))
 
 time_dif = time.time() - current_time
