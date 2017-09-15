@@ -9,6 +9,7 @@ class config:
     def load_config(self, config_filename):
         # create a config parser
         config = parser.ConfigParser()
+        config.optionxform = str
         # read the file
         config.read(config_filename)
         # read the values
