@@ -4,7 +4,7 @@ It generates thousands of reassuring parables about things humans are better tha
 To use the program, enter the filename of the .cfg you would like to use.
 There are two files included:
 1. Reassuring.cfg - This is the standard reassuring parable generator.
-2. self_reference.cfg - This is a bonus file that generates statements about the text generator program\
+2. self_reference.cfg - This is a test file I used while developing the script that generates statements about the text generator program.
 
 To use the program, enter the filename and the number of strings to generate.
 
